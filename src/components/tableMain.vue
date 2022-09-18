@@ -1,39 +1,74 @@
 <template>
-  <v-col>
+  <v-col class="table">
     <v-col class="table_main">
       <gallery-days @selectDate="selectDate" :date="date"></gallery-days>
+      <v-row
+
+          class="table_main--title m-0"
+          justify="end">
+        <v-col class="first">&nbsp;</v-col>
+        <v-col>00</v-col>
+        <v-col>01</v-col>
+        <v-col>02</v-col>
+        <v-col>03</v-col>
+        <v-col>04</v-col>
+        <v-col>05</v-col>
+        <v-col>06</v-col>
+        <v-col>07</v-col>
+        <v-col>08</v-col>
+        <v-col>09</v-col>
+        <v-col>10</v-col>
+        <v-col>11</v-col>
+        <v-col>12</v-col>
+        <v-col>13</v-col>
+        <v-col>14</v-col>
+        <v-col>15</v-col>
+        <v-col>16</v-col>
+        <v-col>17</v-col>
+        <v-col>18</v-col>
+        <v-col>19</v-col>
+        <v-col>20</v-col>
+        <v-col>21</v-col>
+        <v-col>22</v-col>
+        <v-col>23</v-col>
+      </v-row>
+
       <table>
         <tbody>
-        <tr class="table_main--title">
-          <td>&nbsp;</td>
-          <td>00</td>
-          <td>01</td>
-          <td>02</td>
-          <td>03</td>
-          <td>04</td>
-          <td>05</td>
-          <td>06</td>
-          <td>07</td>
-          <td>08</td>
-          <td>09</td>
-          <td>10</td>
-          <td>11</td>
-          <td>12</td>
-          <td>13</td>
-          <td>14</td>
-          <td>15</td>
-          <td>16</td>
-          <td>17</td>
-          <td>18</td>
-          <td>19</td>
-          <td>20</td>
-          <td>21</td>
-          <td>22</td>
-          <td>23</td>
+        <tr  >
+          <v-row class="table_main_info first"  >
+            <td class="table_main_info--surname  " >
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </v-row>
+
         </tr>
-        <v-row v-for="elements in selectDate(this.selectDateResult)" :key="String(elements.date)">
-          <tr class="table_main_info" v-for="(element,index) in elements.dateInner" :key="element.surname">
-            <td class="table_main_info--surname " v-bind:class="{ first: index==0 }">
+        <tr v-for="elements in selectDate(this.selectDateResult)" :key="String(elements.date)">
+          <v-row class="table_main_info" v-for="element in elements.dateInner" :key="element.surname">
+            <td class="table_main_info--surname "  >
               <a :href='"?surname=" + element.surname'>{{ element.surname }} {{ element.NF }}</a>
             </td>
             <td></td>
@@ -61,9 +96,9 @@
             <td></td>
             <td></td>
             <td></td>
-          </tr>
+          </v-row>
 
-        </v-row>
+        </tr>
         </tbody>
       </table>
     </v-col>
@@ -85,7 +120,6 @@ export default {
   data() {
     return {
       selectDateResult: new Date(2025, 10, 6),
-
       date: [
         {
           date: new Date(2025, 10, 6),
@@ -405,54 +439,6 @@ export default {
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
                 NF: 'И. О.'
-              }, {
-
-                surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Е. Л.'
-              }, {
-
-                surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'У. И.'
-              }, {
-
-                surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. В.'
-              }, {
-
-                surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Т. И.'
-              }, {
-
-                surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
               }
               ]
         },
@@ -482,30 +468,6 @@ export default {
                 NF: 'О. Н.'
               }, {
 
-                surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'К. Е.'
-              }, {
-
-                surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Д. И.'
-              }, {
-
-                surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
                 surname: 'Васильева',
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
@@ -534,55 +496,7 @@ export default {
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
                 NF: 'И. О.'
-              }, {
-
-                surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Е. Л.'
-              }, {
-
-                surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'У. И.'
-              }, {
-
-                surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. В.'
-              }, {
-
-                surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Т. И.'
-              }, {
-
-                surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }
+              },
               ]
         },
         {
@@ -605,18 +519,6 @@ export default {
                 NF: 'К. С.'
               }, {
 
-                surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. Н.'
-              }, {
-
-                surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
                 surname: 'Зайцев',
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
@@ -627,18 +529,6 @@ export default {
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
                 NF: 'Д. И.'
-              }, {
-
-                surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
@@ -693,18 +583,6 @@ export default {
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
                 NF: 'И. В.'
-              }, {
-
-                surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Т. И.'
               }, {
 
                 surname: 'Федотов',
@@ -740,36 +618,6 @@ export default {
                 NF: 'О. Н.'
               }, {
 
-                surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'К. Е.'
-              }, {
-
-                surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Д. И.'
-              }, {
-
-                surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'С. В.'
-              }, {
-
                 surname: 'Лебедев',
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
@@ -786,36 +634,6 @@ export default {
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
                 NF: ' М. Т.'
-              }, {
-
-                surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. О.'
-              }, {
-
-                surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Е. Л.'
-              }, {
-
-                surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'У. И.'
-              }, {
-
-                surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
               }, {
 
                 surname: 'Михайлова',
@@ -857,30 +675,6 @@ export default {
                   NF: 'Д. Н.'
                 }, {
 
-                surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'К. С.'
-              }, {
-
-                surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. Н.'
-              }, {
-
-                surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'К. Е.'
-              }, {
-
                 surname: 'Ермолаев',
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
@@ -911,54 +705,6 @@ export default {
                 NF: 'О. А.'
               }, {
 
-                surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: ' М. Т.'
-              }, {
-
-                surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. О.'
-              }, {
-
-                surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Е. Л.'
-              }, {
-
-                surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'У. И.'
-              }, {
-
-                surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. В.'
-              }, {
-
-                surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
                 surname: 'Исаев',
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
@@ -980,23 +726,11 @@ export default {
               [
                 {
 
-                  surname: 'Борисов',
+                  surname: 'Ульянов',
                   countHour: Math.round(4 * Math.random() * 10),
                   startWork: '01',
-                  NF: 'Д. Н.'
+                  NF: 'О. Н.'
                 }, {
-
-                surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'К. С.'
-              }, {
-
-                surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. Н.'
-              }, {
 
                 surname: 'Антипова',
                 countHour: Math.round(4 * Math.random() * 10),
@@ -1169,54 +903,6 @@ export default {
                 NF: 'О. А.'
               }, {
 
-                surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: ' М. Т.'
-              }, {
-
-                surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. О.'
-              }, {
-
-                surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Е. Л.'
-              }, {
-
-                surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'У. И.'
-              }, {
-
-                surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. В.'
-              }, {
-
-                surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
                 surname: 'Исаев',
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
@@ -1274,12 +960,6 @@ export default {
                 NF: 'Д. И.'
               }, {
 
-                surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
                 surname: 'Васильева',
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
@@ -1302,24 +982,6 @@ export default {
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
                 NF: ' М. Т.'
-              }, {
-
-                surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. О.'
-              }, {
-
-                surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Е. Л.'
               }, {
 
                 surname: 'Артемова',
@@ -1415,36 +1077,6 @@ export default {
                 NF: 'С. В.'
               }, {
 
-                surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'К. С.'
-              }, {
-
-                surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: ' М. Т.'
-              }, {
-
-                surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. О.'
-              }, {
-
-                surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
                 surname: 'Ефремов',
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
@@ -1514,18 +1146,6 @@ export default {
                 NF: 'О. Н.'
               }, {
 
-                surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
-              }, {
-
-                surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'К. Е.'
-              }, {
-
                 surname: 'Ермолаев',
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
@@ -1556,17 +1176,6 @@ export default {
                 NF: 'О. А.'
               }, {
 
-                surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: ' М. Т.'
-              }, {
-
-                surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'И. О.'
-              }, {
 
                 surname: 'Куликова',
                 countHour: Math.round(4 * Math.random() * 10),
@@ -1602,18 +1211,6 @@ export default {
                 countHour: Math.round(4 * Math.random() * 10),
                 startWork: '01',
                 NF: 'О. А.'
-              }, {
-
-                surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'Т. И.'
-              }, {
-
-                surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
-                NF: 'О. А.'
               }
               ]
         },
@@ -1623,12 +1220,12 @@ export default {
 
   methods: {
     selectDate(e) {
-      console.log("11111111111"+this.selectDateResult)
       if (typeof (e) !== 'undefined') {
         this.selectDateResult = e
       }
       return this.date.filter(el => {
         if (el.date.getTime() == this.selectDateResult.getTime()) {
+
           return el
         }
       })
@@ -1645,78 +1242,119 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.table_main {
-  margin-top: 24px;
+.table {
+  justify-content: center !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  & table {
-    border-collapse: collapse;
-    display: flex;
-    justify-content: center;
+  &_main {
+    max-width: 1124px;
+    margin-top: 24px;
 
-    & td, & tbody {
-      border: 1px solid #E3EFF9;
+    &--title {
+      width: 100%;
+      justify-content: end;
+      margin: 0;
 
-    }
-
-    & .table_main--title td {
-      height: 40px;
-      padding: 0;
-      min-width: 40px;
-      text-align: center;
-      font-weight: 500;
-      font-size: 12px;
-      line-height: 150%;
-      color: #636363;
-    }
-
-    & a {
-      padding-left: 20px;
-      color: black;
-    }
-  }
-
-  &_info {
-    position: relative;
-
-    & td {
-      border-top: 1px solid transparent !important;
-      border-bottom: 1px solid transparent !important;
-    }
-
-    &:hover {
-
-      background-color: #B5D9FD !important;
-      border-radius: 30px;
-    }
-
-    &--surname {
-      border-bottom: none !important;
-      border-top: none !important;
-      min-width: 167px;
-      position: relative;
-
-      & a {
+      & .col {
+        border: 1px solid #E3EFF9;
+        height: 40px;
+        padding: 0;
+        width: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 40px;
+        text-align: center;
         font-weight: 500;
         font-size: 12px;
         line-height: 150%;
-      }
+        color: #636363;
 
-      &.first {
-        padding-top: 24px;
-      }
-
-      &.true::after {
-        content: '';
-        position: absolute;
-        height: 10px;
-        border-radius: 20px;
-        background-color: #47E69A;
-        min-width: 160px;
-        right: -163px;
+        &.first {
+          flex: 1;
+          width: 100%;
+          min-width: 180px;
+        }
       }
     }
-  }
 
+    & table {
+      border-collapse: collapse;
+      display: flex;
+      justify-content: center;
+
+      & tbody {
+        width: 100%;
+
+      }
+
+      & td, & tbody {
+        border: 1px solid #E3EFF9;
+      }
+
+
+      & a {
+        padding-left: 20px;
+        color: black;
+      }
+    }
+
+    &_info {
+      position: relative;
+      width: 100%;
+      margin: 0;
+
+      & td {
+        width: 38.31px;
+        border-top: none !important;
+        border-bottom: none !important;
+      }
+      &.first{
+
+        &:hover {
+          background-color: transparent !important;
+        }
+        & td{
+          border: 1px solid #E3EFF9;
+          height: 24px;
+        }
+      }
+      &:hover {
+        background-color: #B5D9FD !important;
+        border-radius: 30px;
+      }
+
+      &--surname {
+        border-bottom: none !important;
+        border-top: none !important;
+        min-width: 167px;
+        width: 100%;
+        flex: 1;
+        position: relative;
+
+        & a {
+          font-weight: 500;
+          font-size: 12px;
+          line-height: 150%;
+        }
+
+
+        &.true::after {
+          content: '';
+          position: absolute;
+          height: 10px;
+          border-radius: 20px;
+          background-color: #47E69A;
+          min-width: 160px;
+          right: -163px;
+        }
+      }
+    }
+
+  }
 }
+
 
 </style>

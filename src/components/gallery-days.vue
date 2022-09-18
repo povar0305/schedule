@@ -5,25 +5,34 @@
         class="mx-auto"
         max-width="1128"
     >
+
       <v-slide-group
           show-arrows
       >
         <v-slide-item
             v-for="n in this.date"
             :key="n.id"
+            v-slot="{ active,toggle }"
+
         >
 
-          <div class="gallery_row--item"
-               @click="selectedDate(n.date)">
-            <p>
+          <v-btn class="gallery_row--item"
+                 active-class="active"
+                 :input-value="active"
+                 depressed
+                 rounded
+                 height="24"
+               v-on:click='toggle'>
+            <p @click="selectedDate(n.date)">
               <span>
                 {{ n.date.getDate() }}.{{ n.date.getMonth() }}
               </span>{{ days[n.date.getDay()] }}
             </p>
-          </div>
+          </v-btn>
 
 
         </v-slide-item>
+
       </v-slide-group>
     </v-sheet>
 
@@ -44,7 +53,6 @@ export default {
   },
   methods: {
     selectedDate(e) {
-      console.log("11111111111111"+e)
       this.$emit('selectDate', e)
     }
   }
@@ -58,12 +66,14 @@ export default {
   margin-bottom: 60px;
 
   &--item {
+    margin: 0 5px;
+    padding: 0 9px!important;
     &.active, &:hover {
-      background: #73AEEA;
+      background-color: #73AEEA !important;
       cursor: pointer;
       border-radius: 40px;
 
-      & > * {
+      &  * {
         color: white;
       }
 
@@ -88,5 +98,11 @@ export default {
   border: 1px solid #73AEEA;
   border-radius: 40px;
   color: #73AEEA;
+}
+.theme--light.v-btn.v-btn--has-bg{
+  background-color: transparent;
+}
+.theme--light.v-btn--active:hover::before, .theme--light.v-btn--active::before{
+  opacity: 0!important;
 }
 </style>

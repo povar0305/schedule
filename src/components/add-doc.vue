@@ -89,6 +89,10 @@ export default {
   &_add {
     display: flex;
     flex-direction: column;
+    & .col{
+      display: flex;
+      justify-content: center;
+    }
   }
 
   & button {

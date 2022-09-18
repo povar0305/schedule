@@ -34,4 +34,8 @@ body {
   display: flex;
   flex-direction: column;
 }
+
+.v-alert{
+  background-color:#B5D9FD !important ;
+}
 </style>

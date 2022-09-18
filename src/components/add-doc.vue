@@ -66,7 +66,14 @@ export default {
       if(!this.inputName && !this.surname && !this.nameF){
         this.showModal=true
       }else{
-        // todo добавление в массив - передача в родительский элемент
+        let addInfo={
+          NF:this.inputName[0]+'.'+this.nameF[0],
+          surname:this.surname,
+          countHour:4,
+          startWork: 0
+
+        }
+        this.$emit('addDocInfo', addInfo)
       }
     }
   }
@@ -95,7 +102,7 @@ export default {
 .v-alert__icon{
   border: none !important;
 }
-.v-alert--text:before{
+.form_add .v-alert--text:before{
   background-color: #ff7676;
   opacity: 0.5;
 }

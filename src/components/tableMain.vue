@@ -1,9 +1,10 @@
 <template>
   <v-col class="table">
+
     <v-col class="table_main">
       <gallery-days @selectDate="selectDate" :date="date"></gallery-days>
+      <alert-good :showSucsess="showSucsess"></alert-good>
       <v-row
-
           class="table_main--title m-0"
           justify="end">
         <v-col class="first">&nbsp;</v-col>
@@ -97,12 +98,12 @@
             <td></td>
             <td></td>
           </v-row>
-
         </tr>
         </tbody>
       </table>
     </v-col>
-    <add-doc></add-doc>
+
+    <add-doc @addDocInfo="addDocInfo"></add-doc>
   </v-col>
 
 </template>
@@ -110,16 +111,20 @@
 <script>
 import galleryDays from "@/components/gallery-days";
 import AddDoc from "@/components/add-doc";
+import AlertGood from "@/components/alert-good";
 
 export default {
   name: "tableMain",
   components: {
+    AlertGood,
     AddDoc,
     galleryDays,
   },
   data() {
     return {
       selectDateResult: new Date(2025, 10, 6),
+      showSucsess:false,
+
       date: [
         {
           date: new Date(2025, 10, 6),
@@ -130,104 +135,104 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. Н.'
               }, {
 
                 surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. Е.'
               }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: ' М. Т.'
               }, {
 
                 surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. О.'
               }, {
 
                 surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Е. Л.'
               }, {
 
                 surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'У. И.'
               }, {
 
                 surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. В.'
               }
               ]
@@ -241,122 +246,122 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. Н.'
               }, {
 
                 surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. Е.'
               }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: ' М. Т.'
               }, {
 
                 surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. О.'
               }, {
 
                 surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Е. Л.'
               }, {
 
                 surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'У. И.'
               }, {
 
                 surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. В.'
               }, {
 
                 surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Т. И.'
               }, {
 
                 surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }
               ]
@@ -370,74 +375,74 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. Н.'
               }, {
 
                 surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. Е.'
               }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: ' М. Т.'
               }, {
 
                 surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. О.'
               }
               ]
@@ -451,50 +456,50 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. Н.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: ' М. Т.'
               }, {
 
                 surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. О.'
               },
               ]
@@ -508,86 +513,86 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. Е.'
               }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: ' М. Т.'
               }, {
 
                 surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. О.'
               }, {
 
                 surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Е. Л.'
               }, {
 
                 surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'У. И.'
               }, {
 
                 surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. В.'
               }, {
 
                 surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }
               ]
@@ -601,62 +606,62 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. Н.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: ' М. Т.'
               }, {
 
                 surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. В.'
               }, {
 
                 surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Т. И.'
               }, {
 
                 surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }
               ]
@@ -670,50 +675,50 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Т. И.'
               }, {
 
                 surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }
               ]
@@ -727,110 +732,110 @@ export default {
                 {
 
                   surname: 'Ульянов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'О. Н.'
                 }, {
 
                 surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. Е.'
               }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: ' М. Т.'
               }, {
 
                 surname: 'Константинова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. О.'
               }, {
 
                 surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Е. Л.'
               }, {
 
                 surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'У. И.'
               }, {
 
                 surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. В.'
               }, {
 
                 surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Т. И.'
               }, {
 
                 surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }
               ]
@@ -844,74 +849,74 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. Н.'
               }, {
 
                 surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. Е.'
               }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Т. И.'
               }, {
 
                 surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }
               ]
@@ -925,98 +930,98 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. Н.'
               }, {
 
                 surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. Е.'
               }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Потапова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: ' М. Т.'
               }, {
 
                 surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'У. И.'
               }, {
 
                 surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. В.'
               }, {
 
                 surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Т. И.'
               }, {
 
                 surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }
               ]
@@ -1030,92 +1035,92 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. Н.'
               }, {
 
                 surname: 'Антипова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Зайцев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. Е.'
               }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Е. Л.'
               }, {
 
                 surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'У. И.'
               }, {
 
                 surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. В.'
               }, {
 
                 surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Исаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Т. И.'
               }, {
 
                 surname: 'Федотов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }
               ]
@@ -1129,87 +1134,87 @@ export default {
                 {
 
                   surname: 'Борисов',
-                  countHour: Math.round(4 * Math.random() * 10),
-                  startWork: '01',
+                  countHour: this.random(4, 12),
+                  startWork: this.random(0,23),
                   NF: 'Д. Н.'
                 }, {
 
                 surname: 'Воробьев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Ульянов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. Н.'
               }, {
 
                 surname: 'Ермолаев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Д. И.'
               }, {
 
                 surname: 'Еремеева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Васильева',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'С. В.'
               }, {
 
                 surname: 'Лебедев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'К. С.'
               }, {
 
                 surname: 'Васильев',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
 
                 surname: 'Куликова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Ефремов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'Е. Л.'
               }, {
 
                 surname: 'Артемова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'У. И.'
               }, {
 
                 surname: 'Еремин',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }, {
 
                 surname: 'Михайлова',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'И. В.'
               }, {
 
                 surname: 'Иванов',
-                countHour: Math.round(4 * Math.random() * 10),
-                startWork: '01',
+                countHour: this.random(4, 12),
+                startWork: this.random(0,23),
                 NF: 'О. А.'
               }
               ]
@@ -1225,11 +1230,22 @@ export default {
       }
       return this.date.filter(el => {
         if (el.date.getTime() == this.selectDateResult.getTime()) {
-
           return el
         }
       })
+    },
+    random(min, max) {
+      return Math.floor(min + Math.random() * (max - min));
+    },
+    addDocInfo(e){
+      let newStartWork=this.random(0,23-e.countHour)
+      e.startWork = newStartWork
+      let lastItem = this.date[this.date.length-1]
+      lastItem.dateInner.push(e)
+      this.showSucsess=true
+      window.scrollTo(top)
     }
+
   },
   /*computed: {
 

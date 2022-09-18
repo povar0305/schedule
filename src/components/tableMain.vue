@@ -1,7 +1,7 @@
 <template>
   <v-col>
     <v-col class="table_main">
-      <gallery-days :date="date"></gallery-days>
+      <gallery-days @selectDate="selectDate" :date="date"></gallery-days>
       <table>
         <tbody>
         <tr class="table_main--title">
@@ -31,40 +31,44 @@
           <td>22</td>
           <td>23</td>
         </tr>
+        <v-row v-for="elements in selectDate(this.selectDateResult)" :key="String(elements.date)">
+          <tr class="table_main_info" v-for="(element,index) in elements.dateInner" :key="element.surname">
+            <td class="table_main_info--surname " v-bind:class="{ first: index==0 }">
+              <a :href='"?surname=" + element.surname'>{{ element.surname }} {{ element.NF }}</a>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
 
-        <tr v-for="element in this.date" :key="element.id" class="table_main_info" >
-          <td class="table_main_info--surname " v-bind:class="{ first: element.id==0 }">
-            <a :href='"?surname=" + element.surname'>{{ element.surname }} {{ element.NF }}{{element.id}}</a>
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
+        </v-row>
         </tbody>
       </table>
     </v-col>
-<add-doc></add-doc>  </v-col>
+    <add-doc></add-doc>
+  </v-col>
 
 </template>
 
@@ -76,154 +80,1567 @@ export default {
   name: "tableMain",
   components: {
     AddDoc,
-    galleryDays
+    galleryDays,
   },
   data() {
     return {
+      selectDateResult: new Date(2025, 10, 6),
+
       date: [
-          {
-        id:0,
-        date: new Date(2025, 10, 6),
-        surname: 'Борисов',
-        countHour: 4,
-        startWork: '01',
-        NF:'Д. Н.'
-      }, {
-        id:1,
-        date: new Date(2025, 10, 7),
-        surname: 'Воробьев',
-        countHour: 4,
-        startWork: '01',
-        NF:'К. С.'
-      }, {
-        id:2,
-        date: new Date(2025, 10, 8),
-        surname: 'Ульянов',
-        countHour: 4,
-        startWork: '01',
-        NF:'О. Н.'
-      }, {
-        id:3,
-        date: new Date(2025, 10, 9),
-        surname: 'Антипова',
-        countHour: 4,
-        startWork: '01',
-        NF:'О. А.'
-      }, {
-        id:4,
-        date: new Date(2025, 10, 10),
-        surname: 'Зайцев',
-        countHour: 4,
-        startWork: '01',
-        NF:'К. Е.'
-      }, {
-        id:5,
-        date: new Date(2025, 10, 11),
-        surname: 'Ермолаев',
-        countHour: 4,
-        startWork: '01',
-        NF:'Д. И.'
-      }, {
-        id:6,
-        date: new Date(2025, 10, 12),
-        surname: 'Еремеева',
-        countHour: 4,
-        startWork: '01',
-        NF:'О. А.'
-      }, {
-        id:7,
-        date: new Date(2025, 10, 13),
-        surname: 'Васильева',
-        countHour: 4,
-        startWork: '01',
-        NF:'С. В.'
-      }, {
-        id:8,
-        date: new Date(2025, 10, 14),
-        surname: 'Лебедев',
-        countHour: 4,
-        startWork: '01',
-        NF:'К. С.'
-      }, {
-        id:9,
-        date: new Date(2025, 10, 15),
-        surname: 'Васильев',
-        countHour: 4,
-        startWork: '01',
-        NF:'О. А.'
-      }, {
-        id:10,
-        date: new Date(2025, 10, 16),
-        surname: 'Потапова',
-        countHour: 4,
-        startWork: '01',
-        NF:' М. Т.'
-      }, {
-        id:11,
-        date: new Date(2025, 10, 17),
-        surname: 'Константинова',
-        countHour: 4,
-        startWork: '01',
-        NF:'И. О.'
-      }, {
-        id:12,
-        date: new Date(2025, 10, 18),
-        surname: 'Куликова',
-        countHour: 4,
-        startWork: '01',
-        NF:'О. А.'
-      }, {
-        id:13,
-        date: new Date(2025, 10, 19),
-        surname: 'Ефремов',
-        countHour: 4,
-        startWork: '01',
-        NF:'Е. Л.'
-      }, {
-        id:14,
-        date: new Date(2025, 10, 20),
-        surname: 'Артемова',
-        countHour: 4,
-        startWork: '01',
-        NF:'У. И.'
-      }, {
-        id:15,
-        date: new Date(2025, 10, 21),
-        surname: 'Еремин',
-        countHour: 4,
-        startWork: '01',
-        NF:'О. А.'
-      }, {
-        id:16,
-        date: new Date(2025, 10, 22),
-        surname: 'Михайлова',
-        countHour: 4,
-        startWork: '01',
-        NF:'И. В.'
-      }, {
-        id:17,
-        date: new Date(2025, 10, 23),
-        surname: 'Иванов',
-        countHour: 4,
-        startWork: '01',
-        NF:'О. А.'
-      }, {
-        id:18,
-        date: new Date(2025, 10, 24),
-        surname: 'Исаев',
-        countHour: 4,
-        startWork: '01',
-        NF:'Т. И.'
-      }, {
-        id:19,
-        date: new Date(2025, 10, 25),
-        surname: 'Федотов',
-        countHour: 4,
-        startWork: '01',
-        NF:'О. А.'
-      }]
+        {
+          date: new Date(2025, 10, 6),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 7),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 8),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 9),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 10),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 11),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 12),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 13),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 14),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 15),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 16),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+        {
+          date: new Date(2025, 10, 17),
+
+          dateInner:
+
+              [
+                {
+
+                  surname: 'Борисов',
+                  countHour: Math.round(4 * Math.random() * 10),
+                  startWork: '01',
+                  NF: 'Д. Н.'
+                }, {
+
+                surname: 'Воробьев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Ульянов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. Н.'
+              }, {
+
+                surname: 'Антипова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Зайцев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. Е.'
+              }, {
+
+                surname: 'Ермолаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Д. И.'
+              }, {
+
+                surname: 'Еремеева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Васильева',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'С. В.'
+              }, {
+
+                surname: 'Лебедев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'К. С.'
+              }, {
+
+                surname: 'Васильев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Потапова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: ' М. Т.'
+              }, {
+
+                surname: 'Константинова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. О.'
+              }, {
+
+                surname: 'Куликова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Ефремов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Е. Л.'
+              }, {
+
+                surname: 'Артемова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'У. И.'
+              }, {
+
+                surname: 'Еремин',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Михайлова',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'И. В.'
+              }, {
+
+                surname: 'Иванов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }, {
+
+                surname: 'Исаев',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'Т. И.'
+              }, {
+
+                surname: 'Федотов',
+                countHour: Math.round(4 * Math.random() * 10),
+                startWork: '01',
+                NF: 'О. А.'
+              }
+              ]
+        },
+      ]
     }
-  }
+  },
+
+  methods: {
+    selectDate(e) {
+      console.log("11111111111"+this.selectDateResult)
+      if (typeof (e) !== 'undefined') {
+        this.selectDateResult = e
+      }
+      return this.date.filter(el => {
+        if (el.date.getTime() == this.selectDateResult.getTime()) {
+          return el
+        }
+      })
+    }
+  },
+  /*computed: {
+
+    setDate: function () {
+      this.selectDate(new Date(2025, 10, 6))
+    }
+  }*/
+
 }
 </script>
 
@@ -236,7 +1653,7 @@ export default {
     display: flex;
     justify-content: center;
 
-    & td,& tbody {
+    & td, & tbody {
       border: 1px solid #E3EFF9;
 
     }
@@ -261,10 +1678,11 @@ export default {
   &_info {
     position: relative;
 
-    & td{
+    & td {
       border-top: 1px solid transparent !important;
       border-bottom: 1px solid transparent !important;
     }
+
     &:hover {
 
       background-color: #B5D9FD !important;
@@ -276,9 +1694,17 @@ export default {
       border-top: none !important;
       min-width: 167px;
       position: relative;
-      &.first{
+
+      & a {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 150%;
+      }
+
+      &.first {
         padding-top: 24px;
       }
+
       &.true::after {
         content: '';
         position: absolute;

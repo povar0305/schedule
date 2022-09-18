@@ -14,7 +14,7 @@
         >
 
           <div class="gallery_row--item"
-          @click="selectedDate(n.date)"  >
+               @click="selectedDate(n.date)">
             <p>
               <span>
                 {{ n.date.getDate() }}.{{ n.date.getMonth() }}
@@ -42,9 +42,10 @@ export default {
     date: null
 
   },
-  methods:{
-    selectedDate(e){
-     console.log(e)
+  methods: {
+    selectedDate(e) {
+      console.log("11111111111111"+e)
+      this.$emit('selectDate', e)
     }
   }
 }
@@ -55,24 +56,27 @@ export default {
   justify-content: center;
   margin-top: 42px;
   margin-bottom: 60px;
-  &--item{
-    &.active,&:hover{
+
+  &--item {
+    &.active, &:hover {
       background: #73AEEA;
       cursor: pointer;
       border-radius: 40px;
-      & >*{
+
+      & > * {
         color: white;
       }
 
     }
-    & p{
+
+    & p {
       padding: 1px 9px;
       font-weight: 500;
       font-size: 14px;
       line-height: 150%;
       color: #636363;
 
-      & span{
+      & span {
         font-weight: 600;
       }
     }
